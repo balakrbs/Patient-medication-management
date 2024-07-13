@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+ main{
+    margin-top: 5%;
+    margin-right: 12px;
+    margin-left: 5px;
+ }
+
+ .heading{
+    margin-top: -20%;
+    margin-left: 0%;
+ }
+ .head-title{
+    font-size: 66px;
+ }
+ .head-mean{
+    font-size: 22px;
+ }
+
+ .homecontent{
+    position: absolute;
+    z-index: -1;
+    padding-top: 8%;
+    padding-left: 5%;
+ }
+.foot-content{
+    background-color: aqua;
+    margin-left: -20px;
+}
+.counts{
+   transform: translate(7%,12%);
+}
+.cards {
+   margin-left:50px;
+   margin-right:50px;
+   transition:all 0.2s ease;
+}
+.cards:hover {
+	cursor:pointer;
+	box-shadow:5px 6px 6px 2px #e9ecef;
+	transform:scale(1.1);
+}
+
+.user-details{
+   margin-top: 8%;
+}
+.appoint-col{
+   margin-left: 4%;
+}
+ @media(max-width:990px){
+    main{
+        margin-top: 15%;
+        margin-right: 3%;
+     }
+     .heading{
+        z-index: -1;
+        margin-top: -20%;
+     }
+     .head-title{
+        font-size: 35px;
+     }
+     .head-mean{
+        font-size: 16px;
+     }
+     .homecontent{
+        position: absolute;
+        z-index: -1;
+        padding-top: 85%;
+        padding-left: 0%;
+     }
+     .counts{
+      transform: translate(0%,0%);
+   }
+     .cards {
+      margin-left:0px;
+      margin-right:0px;
+      }
+      .appoint-col{
+         margin-left: 0%;
+      }
+ }

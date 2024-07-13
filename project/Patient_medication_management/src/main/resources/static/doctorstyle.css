@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+ main{
+    margin-top: 0%;
+    font-family: "Poppins", sans-serif;
+    
+ }
+ svg{
+    position: absolute;
+    z-index:-2;
+ }
+ .cards-containter{
+   margin-top: 10%;
+   position: absolute;
+   z-index:-1;
+
+ } 
+ .card-deck {
+   display: flex;
+   flex-wrap: wrap;
+}
+.card {
+   flex: 1 0 21%; 
+   margin: 10px;
+}
+@media(max-width:990px){
+    main{
+        margin-top: 36%;
+     }
+     @media (max-width: 768px) {
+      .card {
+          flex: 1 0 46%;
+      }
+  }
+  @media (max-width: 576px) {
+      .card {
+          flex: 1 0 100%; 
+      }
+  }
+}

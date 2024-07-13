@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Registration</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./navstyle.css" />
+    <link rel="stylesheet" href="./registerstyle.css" />
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/6cb71b80aa.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./home-style.css" />
+    <script
+      src="https://kit.fontawesome.com/6cb71b80aa.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <i class="bx bx-menu menu-icon"></i>
+        <span class="logo-name">Patient & Medication Management </span>
+      </div>
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon"></i>
+          <span class="logo-name">K R B S</span>
+        </div>
+
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <a href="/" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span class="link">Home</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/register" class="nav-link">
+                <i class="fa-solid fa-registered"></i>
+                <span class="link">Register</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/Appointments" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="link">Appointments</span>
+              </a>
+            </li>
+            <li class="list">
+                <a href="/doctors" class="nav-link">
+                    <i class="fa-solid fa-user-doctor"></i>
+                  <span class="link">Doctors</span>
+                </a>
+            </li>
+            
+          </ul>
+          <div class="bottom-cotent">
+            <li class="list">
+              <a href="/login" class="nav-link">
+                <span class="link btn bg-info ps-4 pe-4 fs-5"><i class="fa-solid fa-right-to-bracket"></i>Login</span>
+              </a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,32L48,64C96,96,192,160,288,181.3C384,203,480,181,576,160C672,139,768,117,864,117.3C960,117,1056,139,1152,170.7C1248,203,1344,245,1392,266.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+       
+        <div class="reg-container">
+            <h2 class="text-center mb-5 text-primary">Register Here</h2>
+            <div class="register-form ms-5 mb-5">                
+              <form class="row needs-validation" th:action="@{/register}" method="post" th:object="${user}" novalidate>
+                <div class="col-md-3 mt-2">
+                    <label for="validationCustom05" class="form-label"
+                      >Id</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom05"
+                      th:field="*{id}"
+                      required />
+                    <div class="invalid-feedback">
+                      Please provide a valid mobile number.
+                    </div>
+                  </div>
+                <div class="row mt-4">
+                  <div class="col-md-5">
+                    <label for="validationCustom01" class="form-label"
+                      >First name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom01"
+                      th:field="*{firstName}"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                  <div class="col-md-5">
+                    <label for="validationCustom02" class="form-label"
+                      >Last name</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom02"
+                      th:field="*{lastName}"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-md-3">
+                    <label for="validationCustomUsername" class="form-label"
+                      >Age</label
+                    >
+                    <div class="input-group has-validation">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="validationCustomUsername"
+                        aria-describedby="inputGroupPrepend"
+                        th:field="*{age}"
+                        required
+                      />
+                      <div class="invalid-feedback">Please provide a age.</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom04" class="form-label"
+                      >Sex</label
+                    >
+                    <select
+                      class="form-select"
+                      id="validationCustom04"
+                      th:field="*{sex}"
+                      required
+                    >
+                    	<option value=""></option>
+                      <option selected disabled value="-">Choose...</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a gender.</div>
+                  </div>
+                </div>
+                <div class="col-md-9 mt-4">
+                  <label for="validationCustom05" class="form-label"
+                    >Address</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationCustom05"
+                    th:field="*{address}"
+                    required
+                  />
+                  <div class="invalid-feedback">Please provide a Address.</div>
+                </div>
+                <div class="row mt-4">
+                  <div class="col-md-5">
+                    <label for="validationCustom05" class="form-label"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="validationCustom05"
+                      th:field="*{email}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please provide a valid mail id.
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <label for="validationCustom05" class="form-label"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="validationCustom05"
+                      th:field="*{password}"
+                      required
+                    />
+                    <div class="invalid-feedback">
+                      Please provide a password.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 mt-4">
+                  <label for="validationCustom05" class="form-label"
+                    >Phone No</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="validationCustom05"
+                    th:field="*{phone}"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Please provide a valid mobile number.
+                  </div>
+                </div>
+                <div class="col-12 mt-4">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="invalidCheck"
+                      required
+                    />
+                    <label class="form-check-label" for="invalidCheck">
+                      Agree to terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 mt-5 ">
+                  <button class="btn btn-primary ps-4 pe-4" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+        </div>
+
+
+    </main>
+
+    
+
+       
+
+    <section class="overlay"></section>
+
+    <script src="./registerjs.js"></script>
+    <script>
+        const navBar = document.querySelector("nav"),
+       menuBtns = document.querySelectorAll(".menu-icon"),
+       overlay = document.querySelector(".overlay");
+
+     menuBtns.forEach((menuBtn) => {
+       menuBtn.addEventListener("click", () => {
+         navBar.classList.toggle("open");
+       });
+     });
+
+     overlay.addEventListener("click", () => {
+       navBar.classList.remove("open");
+     });
+    </script>
+  </body>
+</html>

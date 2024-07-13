@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Dashboard</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./navstyle.css" />
+    <link rel="stylesheet" href="./mainstyle.css" />
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/6cb71b80aa.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./home-style.css" />
+    <script
+      src="https://kit.fontawesome.com/6cb71b80aa.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <i class="bx bx-menu menu-icon"></i>
+        <span class="logo-name">Patient & Medication Management </span>
+      </div>
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon"></i>
+          <span class="logo-name">K R B S</span>
+        </div>
+
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span class="link">Dashboard</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/Appointments" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="link">Appointments</span>
+              </a>
+            </li>
+            <li class="list">
+                <a href="/doctors" class="nav-link">
+                    <i class="fa-solid fa-user-doctor"></i>
+                  <span class="link">Doctors</span>
+                </a>
+            </li>
+          
+          </ul>
+          <div class="bottom-cotent"> 
+            
+            <li class="list">
+              <a href="#" class="nav-link"  th:action="@{/logout}" method="post">
+                <form th:action="@{/logout}" method="post"><button   class="link btn bg-danger text-white ps-4 pe-4 fs-5" type="submit"><i class="fa-solid fa-user"></i>Logout</button></form>
+              	</form>
+              </a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,32L48,64C96,96,192,160,288,181.3C384,203,480,181,576,160C672,139,768,117,864,117.3C960,117,1056,139,1152,170.7C1248,203,1344,245,1392,266.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+        
+        <div class="heading">
+          <div class="container ms-3" th:if="${user != null}">
+              <p class="head-title text-dark">WELCOME, <span class="text-white" th:text="${user.email}">krbs@gmail.com</span></p>
+          </div>
+      </div>
+
+              
+        <div class="user-details container mb-5">
+          <div class="row align-items-start d-flex flex-wrap">
+            <div class="col shadow-lg">
+              <table class="table table-borderless table-hover mt-3 fs-4">
+                <tbody>
+                  <tr>
+                    <td class="text-primary">ID</td>
+                    <td><span th:text="${user.id}"></span></td>
+                  </tr>
+                  <tr>                   
+                    <td class="text-primary">First Name:</td>
+                    <td><span th:text="${user.firstName}"></span></td>                    
+                  </tr>
+                  <tr>                   
+                    <td class="text-primary">Last Name:</td>
+                    <td><span th:text="${user.lastName}"></span></td>                    
+                  </tr>
+                  <tr>                   
+                    <td class="text-primary">Age:</td>
+                    <td><span th:text="${user.age}"></span></td>                    
+                  </tr>
+                  <tr>                   
+                    <td class="text-primary">Sex:</td>
+                    <td><span th:text="${user.sex}"></span></td>                    
+                  </tr>
+                  <tr>                   
+                    <td class="text-primary">Address:</td>
+                    <td><span th:text="${user.address}"></span></td>                    
+                  </tr>
+                  <tr>                   
+                    <td class="text-primary">Phone:</td>
+                    <td><span th:text="${user.phone}"></span></td>                    
+                  </tr>                  
+                </tbody>
+              </table>
+            </div>
+            <div class="appoint-col col shadow-lg mt-5 text-center" th:if="${appointments != null}">
+			    <h2 class="text-center text-primary mt-3">Your Appointments</h2>
+			    <div class="table-responsive">
+			        <table class="table  table-striped table-hover mt-3 fs-5">
+			            <thead>
+			                <tr>
+			                    <th scope="col">Id</th>
+			                    <th scope="col">Name</th>
+			                    <th scope="col">Age</th>
+			                    <th scope="col">Date</th>
+			                    <th scope="col">Time</th>
+			                    <th scope="col">Reason</th>
+			                </tr>
+			            </thead>
+			            <tbody class="table-group-divider">
+			                <tr th:each="appointment : ${appointments}">
+			                    <td><p><span th:text="${appointment.id}"></span></p></td>
+			                    <td><p><span th:text="${appointment.name}"></span></p></td>
+			                    <td><p><span th:text="${appointment.age}"></span></p></td>
+			                    <td><p><span th:text="${appointment.date}"></span></p></td>
+			                    <td><p><span th:text="${appointment.time}"></span></p></td>
+			                    <td><p><span th:text="${appointment.reason}"></span></p></td>
+			                </tr>
+			            </tbody>
+			        </table>
+			        <a href="/BookAppointments" class="btn btn-primary mt-2 mb-4" id="appointment-link">BOOK NOW</a>
+			    </div>
+			</div>
+          </div>
+        </div>    
+
+    </main>
+
+    <section class="overlay"></section>
+
+    <script src="script.js"></script>
+    <script>
+        const navBar = document.querySelector("nav"),
+       menuBtns = document.querySelectorAll(".menu-icon"),
+       overlay = document.querySelector(".overlay");
+
+     menuBtns.forEach((menuBtn) => {
+       menuBtn.addEventListener("click", () => {
+         navBar.classList.toggle("open");
+       });
+     });
+
+     overlay.addEventListener("click", () => {
+       navBar.classList.remove("open");
+     });
+    </script>
+  </body>
+</html>
