@@ -49,7 +49,7 @@ public class UserControllerTest {
         user.setEmail(email);
 
         Appointments appointment = new Appointments();
-        appointment.setId("1");
+        //appointment.setId("1");
         appointment.setName("Test Appointment");
         appointment.setAge(30);
         appointment.setDate("2023-07-01");

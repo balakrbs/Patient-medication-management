@@ -11,7 +11,6 @@ import com.PatientMedication.Model.Appointments;
 import com.PatientMedication.Model.Patients;
 import com.PatientMedication.Repository.AppointRepository;
 import com.PatientMedication.Repository.UserRepository;
-import com.PatientMedication.Service.AppointService;
 import com.PatientMedication.Utils.LoggedInUserHolder;
 
 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Medication Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Prescription Management</h2>
+
+    <!-- Form for adding a new prescription -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form th:action="@{/medications}" method="post">
+                <div class="form-group">
+                    <label for="patientName">Patient Name:</label>
+                    <select class="form-control" id="patientName" name="patientFirstName" required>
+                        <option value="">Select Patient</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="doctorName">Doctor Name:</label>
+                    <select class="form-control" id="doctorName" name="doctorFirstName" required>
+                        <option value="">Select Doctor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="prescription">Prescription:</label>
+                    <textarea class="form-control" id="prescription" name="prescription" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Prescription</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Display prescriptions in cards -->
+        <div th:each="medication : ${medications}" class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${medication.patientFirstName + ' ' + medication.patientLastName}"></h5>
+                    <p class="card-text" th:text="${medication.prescription}"></p>
+                    <form th:action="@{'/medications/update/' + ${medication.id}}" method="post" class="d-inline">
+                        <input type="hidden" name="patientFirstName" th:value="${medication.patientFirstName}">
+                        <input type="hidden" name="patientLastName" th:value="${medication.patientLastName}">
+                        <input type="hidden" name="doctorFirstName" th:value="${medication.doctorFirstName}">
+                        <input type="hidden" name="doctorLastName" th:value="${medication.doctorLastName}">
+                        <input type="hidden" name="prescription" th:value="${medication.prescription}">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                    <form th:action="@{'/medications/delete/' + ${medication.id}}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // Fetch patients and populate the dropdown
+    $.ajax({
+        url: '/api/patients',
+        method: 'GET',
+        success: function(data) {
+            var patientSelect = $('#patientName');
+            data.forEach(function(patient) {
+                patientSelect.append('<option value="' + patient.firstName + '">' + patient.firstName + ' ' + patient.lastName + '</option>');
+            });
+        }
+    });
+
+    // Fetch doctors and populate the dropdown
+    $.ajax({
+        url: '/api/doctors',
+        method: 'GET',
+        success: function(data) {
+            var doctorSelect = $('#doctorName');
+            data.forEach(function(doctor) {
+                doctorSelect.append('<option value="' + doctor.firstName + '">' + doctor.firstName + ' ' + doctor.lastName + '</option>');
+            });
+        }
+    });
+});
+</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,19 +1,16 @@
 package com.PatientMedication.Service;
 
+import com.PatientMedication.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.PatientMedication.Repository.UserRepository;
-
 @Service
 public class patientService {
-	
-	@Autowired
-	private UserRepository userRepo;
-	
-	public long getTotalPatient() {
+
+    @Autowired
+    private UserRepository userRepo;
+
+    public long getTotalPat() {
         return userRepo.count();
     }
-	
-
 }

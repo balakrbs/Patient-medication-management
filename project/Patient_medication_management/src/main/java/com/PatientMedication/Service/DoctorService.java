@@ -26,4 +26,9 @@ public class DoctorService {
 	        return doctorRepo.findAll();
 	    }
 
+		public Object findAll() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 }

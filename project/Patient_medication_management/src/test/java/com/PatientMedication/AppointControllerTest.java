@@ -40,7 +40,7 @@ public class AppointControllerTest {
     public void testSaveAppointment() {
         // Arrange
         Appointments appointment = new Appointments();
-        appointment.setId("1");
+        //appointment.setId("1");
         appointment.setName("John Doe");
         // Set other fields as needed
 

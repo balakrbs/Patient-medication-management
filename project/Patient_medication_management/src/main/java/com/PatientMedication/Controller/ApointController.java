@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.PatientMedication.Model.Appointments;
-import com.PatientMedication.Repository.AppointRepository;
 import com.PatientMedication.Service.AppointService;
 
 @Controller
 public class ApointController {
 	
-	@Autowired
-	private AppointRepository appointRepo;
+	
 	
 	@Autowired
 	private AppointService appointService;

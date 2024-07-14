@@ -82,7 +82,6 @@
                 <table class="table">                      
                         <thead class="table-primary">
                           <tr>
-                            <th scope="col">ID</th>
                             <th scope="col">NAME</th>
                             <th scope="col">AGE</th>
                             <th scope="col">DOB</th>
@@ -97,7 +96,6 @@
                         </thead>
                         <tbody>
                           <tr th:each="appointments : ${appointments}">
-                            <td th:text="${appointments.id}"></td>
                             <td th:text="${appointments.name}"></td>
                             <td th:text="${appointments.age}"></td>
                             <td th:text="${appointments.dob}"></td>
