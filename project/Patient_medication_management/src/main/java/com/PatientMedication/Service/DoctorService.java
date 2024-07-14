@@ -1,12 +1,14 @@
 package com.PatientMedication.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.PatientMedication.Model.Doctors;
 import com.PatientMedication.Repository.doctorsRepository;
+import com.PatientMedication.exception.ResourceNotFoundException;
 
 @Service
 public class DoctorService {
@@ -29,6 +31,14 @@ public class DoctorService {
 		public Object findAll() {
 			// TODO Auto-generated method stub
 			return null;
+		}
+//		public Optional<Doctors> getDoctorById(String id){
+//			return doctorRepo.findById(id);
+//		}
+
+		public Doctors getDoctorById(String id) {
+		    return doctorRepo.findById(id)
+		            .orElseThrow(() -> new ResourceNotFoundException("Doctor not found with id: " + id));
 		}
 
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Medication Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <h1 th:if="${medication.id == null}">Add Medication</h1>
+        <h1 th:if="${medication.id != null}">Edit Medication</h1>
+<form th:action="@{/medications/{id}(id=${medication.id})}" th:object="${medication}" method="post">
+    <div class="form-group">
+        <label for="patient">Patient</label>
+        <select class="form-control" id="patient" name="patientId">
+            <option value="">Select Patient</option>
+            <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.firstName + ' ' + patient.lastName}" th:selected="${patient.id == medication.patient.id}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="doctor">Doctor</label>
+        <select class="form-control" id="doctor" name="doctorId">
+            <option value="">Select Doctor</option>
+            <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.firstname + ' ' + doctor.lastname}" th:selected="${doctor.id == medication.doctor.id}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" th:field="*{description}" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+    </div>
+</body>
+</html>

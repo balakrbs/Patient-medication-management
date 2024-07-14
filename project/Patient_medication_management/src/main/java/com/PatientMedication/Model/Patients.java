@@ -104,4 +104,5 @@ public class Patients {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
 }
