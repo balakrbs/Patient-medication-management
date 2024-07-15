@@ -36,47 +36,52 @@ public class MedicationController {
 	        return "medication";
 	    }
 
-    @GetMapping("/medications/new")
-    public String showNewMedicationForm(Model model) {
-        model.addAttribute("medication", new Medication());
-        model.addAttribute("patients", patientService.getAllPatients());
-        model.addAttribute("doctors", doctorService.getAllDoctors());
-        return "medication-form";
-    }
+	    @GetMapping("/medications/new")
+	    public String showNewMedicationForm(Model model) {
+	        model.addAttribute("medication", new Medication());
+	        model.addAttribute("patients", patientService.getAllPatients());
+	        model.addAttribute("doctors", doctorService.getAllDoctors());
+	        return "medication-form";
+	    }
 
-    @PostMapping("/medications")
-    public String createMedication(@RequestParam("patientId") String patientId, @RequestParam("doctorId") String doctorId, @ModelAttribute("medication") Medication medication) {
-        Patients patient = patientService.getPatientById(patientId);
-        Doctors doctor = doctorService.getDoctorById(doctorId);
-        medicationService.createMedication(patient, doctor, medication);
-        return "redirect:/medications";
-    }
+	    @PostMapping("/medications")
+	    public String createMedication(@RequestParam("patientId") String patientId, @RequestParam("doctorId") String doctorId, @ModelAttribute("medication") Medication medication) {
+	        Patients patient = patientService.getPatientById(patientId);
+	        Doctors doctor = doctorService.getDoctorById(doctorId);
+	        medicationService.createMedication(patient, doctor, medication);
+	        return "redirect:/medications";
+	    }
 
+	    @GetMapping("/medications/{id}/edit")
+	    public String showEditMedicationForm(@PathVariable("id") String id, Model model) {
+	        Medication medication = medicationService.getMedicationById(id);
+	        if (medication.getPatient() == null) {
+	            medication.setPatient(new Patients());
+	        }
+	        if (medication.getDoctor() == null) {
+	            medication.setDoctor(new Doctors());
+	        }
+	        model.addAttribute("medication", medication);
+	        model.addAttribute("patients", patientService.getAllPatients());
+	        model.addAttribute("doctors", doctorService.getAllDoctors());
+	        return "medication-form";
+	    }
 
-    @GetMapping("/medications/{id}/edit")
-    public String showEditMedicationForm(@PathVariable("id") String id, Model model) {
-        Medication medication = medicationService.getMedicationById(id);
-        model.addAttribute("medication", medication);
-        model.addAttribute("patients", patientService.getAllPatients());
-        model.addAttribute("doctors", doctorService.getAllDoctors());
-        return "medication-form";
-    }
+	    @PostMapping("/medications/{id}")
+	    public String updateMedication(@PathVariable("id") String id, @RequestParam("patientId") String patientId, @RequestParam("doctorId") String doctorId, @ModelAttribute("medication") Medication medication, BindingResult bindingResult) {
+	        if (bindingResult.hasErrors()) {
+	            return "medication-form";
+	        }
 
-    @PostMapping("/medications/{id}")
-    public String updateMedication(@PathVariable("id") String id, @RequestParam("patientId") String patientId, @RequestParam("doctorId") String doctorId, @ModelAttribute("medication") Medication medication, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            return "medication-form";
-        }
+	        Patients patient = patientService.getPatientById(patientId);
+	        Doctors doctor = doctorService.getDoctorById(doctorId);
+	        medicationService.updateMedication(id, patient, doctor, medication);
+	        return "redirect:/medications";
+	    }
 
-        Patients patient = patientService.getPatientById(patientId);
-        Doctors doctor = doctorService.getDoctorById(doctorId);
-        medicationService.updateMedication(id, patient, doctor, medication);
-        return "redirect:/medications";
-    }
-
-    @GetMapping("/medications/{id}/delete")
-    public String deleteMedication(@PathVariable("id") String id) {
-        medicationService.deleteMedication(id);
-        return "redirect:/medications";
-    }
+	    @GetMapping("/medications/{id}/delete")
+	    public String deleteMedication(@PathVariable("id") String id) {
+	        medicationService.deleteMedication(id);
+	        return "redirect:/medications";
+	    }
 }

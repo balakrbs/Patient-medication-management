@@ -90,7 +90,8 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,32L48,64C96,96,192,160,288,181.3C384,203,480,181,576,160C672,139,768,117,864,117.3C960,117,1056,139,1152,170.7C1248,203,1344,245,1392,266.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
 
         <div class="medi-cont container border border-primary p-4">
-            <h1>Medications <a th:href="@{/medications/new}" class="btn btn-primary ms-4">Add Medication</a></h1>
+            <h1>Medications</h1>
+            <a th:href="@{/medications/new}" class="btn btn-primary ms-4">Add Medication</a>
             <div class="row mt-5">
                 <div class="col-md-4" th:each="medication : ${medications}">
                     <div class="card mb-4 text-center">

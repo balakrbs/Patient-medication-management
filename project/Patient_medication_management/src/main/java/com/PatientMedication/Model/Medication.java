@@ -7,29 +7,40 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "medications")
 public class Medication {
-	@Id
+    @Id
     private String id;
-    private Patients patient;
-    private Doctors doctor;
+    private Patients patient = new Patients();
+    private Doctors doctor = new Doctors();
     private String description;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+
+    public Medication() {
+        this.patient = new Patients();
+        this.doctor = new Doctors();
+    }
+
 
 	public String getId() {
 		return id;
 	}
 
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 
 	public Patients getPatient() {
 		return patient;
 	}
 
+
 	public void setPatient(Patients patient) {
 		this.patient = patient;
 	}
+
 
 	public Doctors getDoctor() {
 		return doctor;
@@ -40,25 +51,31 @@ public class Medication {
 		this.doctor = doctor;
 	}
 
+
 	public String getDescription() {
 		return description;
 	}
+
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
+
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
+
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
+
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
@@ -76,11 +93,6 @@ public class Medication {
 		this.updatedAt = updatedAt;
 	}
 
-	public Medication() {
-		// TODO Auto-generated constructor stub
-	}
 
-    // Getters, setters, and constructors
-    
     
 }
