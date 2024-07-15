@@ -1,6 +1,5 @@
 package com.PatientMedication.Controller;
 
-
 import java.util.List;
 
 import org.springframework.stereotype.Controller;

@@ -33,7 +33,8 @@ public class Patients {
 
     public Patients() {}
 
-    public String getId() {
+    
+	public String getId() {
         return id;
     }
 
@@ -104,5 +105,11 @@ public class Patients {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    
+    //For test
+    public Patients(String string, String string2, String string3) {
+		// TODO Auto-generated constructor stub
+	}
+
 
 }

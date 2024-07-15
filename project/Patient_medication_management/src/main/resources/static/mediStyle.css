@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+ main{
+    margin-top: 5%;
+    margin-right: 12px;
+    margin-left: 2px;
+ }
+.medi-cont{
+    margin-top: -7%;
+    border-radius: 20px;
+    transform: translate(7%,1%);
+    position: absolute;
+    z-index: -2;
+}
+ @media(max-width:990px){
+    main{
+        margin-top: 15%;
+        margin-right: 3%;
+     }
+     .medi-cont{
+        margin-top: 0%;
+        transform: translate(0%,0%);
+        position: absolute;
+        z-index: -2;
+    }
+ }

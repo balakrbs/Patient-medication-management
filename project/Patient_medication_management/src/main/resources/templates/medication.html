@@ -1,30 +1,133 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Medications</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container my-5">
-        <h1>Medications</h1>
-        <a th:href="@{/medications/new}" class="btn btn-primary mb-3">Add Medication</a>
-        <div class="row">
-            <div class="col-md-4" th:each="medication : ${medications}">
-                <div class="card mb-4 text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Patient Name</h5>
-                        <p class="card-text" th:text="${medication.patient.firstName + ' ' + medication.patient.lastName}"></p>
-                        <h5 class="card-title">Doctor Name</h5>
-                        <p class="card-text" th:text="${medication.doctor.firstname + ' ' + medication.doctor.lastname}"></p>
-                        <h5 class="card-title">Prescription</h5>
-                        <p class="card-text" th:text="${medication.description}"></p>
-                        <a th:href="@{/medications/{id}/edit(id=${medication.id})}" class="btn btn-primary">Update</a>
-                        <a th:href="@{/medications/{id}/delete(id=${medication.id})}" class="btn btn-danger">Delete</a>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Medications</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./navstyle.css" />
+    <link rel="stylesheet" href="./mediStyle.css" />
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://kit.fontawesome.com/6cb71b80aa.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./home-style.css" />
+    <script
+      src="https://kit.fontawesome.com/6cb71b80aa.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <i class="bx bx-menu menu-icon"></i>
+        <span class="logo-name">Patient & Medication Management </span>
+      </div>
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon"></i>
+          <span class="logo-name">K R B S</span>
+        </div>
+
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <a href="/" class="nav-link">
+                <i class="fa-solid fa-house"></i>
+                <span class="link">Home</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/register" class="nav-link">
+                <i class="fa-solid fa-registered"></i>
+                <span class="link">Register</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="/Appointments" class="nav-link">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="link">Appointments</span>
+              </a>
+            </li>
+            <li class="list">
+                <a href="/doctors" class="nav-link">
+                    <i class="fa-solid fa-user-doctor"></i>
+                  <span class="link">Doctors</span>
+                </a>
+            </li>
+            <li class="list">
+                <a th:href="@{/medications}" class="nav-link">
+                    <i class="fa-solid fa-user-doctor"></i>
+                  <span class="link">Medications</span>
+                </a>
+            </li>
+            
+          </ul>
+          <div class="bottom-cotent">
+            <li class="list">
+              <a href="./login.html" class="nav-link">
+                <span class="link btn bg-info ps-4 pe-4 fs-5"><i class="fa-solid fa-right-to-bracket"></i>Login</span>
+              </a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,32L48,64C96,96,192,160,288,181.3C384,203,480,181,576,160C672,139,768,117,864,117.3C960,117,1056,139,1152,170.7C1248,203,1344,245,1392,266.7L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+
+        <div class="medi-cont container border border-primary p-4">
+            <h1>Medications <a th:href="@{/medications/new}" class="btn btn-primary ms-4">Add Medication</a></h1>
+            <div class="row mt-5">
+                <div class="col-md-4" th:each="medication : ${medications}">
+                    <div class="card mb-4 text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Patient Name</h5>
+                            <p class="card-text" th:text="${medication.patient.firstName + ' ' + medication.patient.lastName}"></p>
+                            <h5 class="card-title">Doctor Name</h5>
+                            <p class="card-text" th:text="${medication.doctor.firstname + ' ' + medication.doctor.lastname}"></p>
+                            <h5 class="card-title">Prescription</h5>
+                            <p class="card-text" th:text="${medication.description}"></p>
+                            <a th:href="@{/medications/{id}/edit(id=${medication.id})}" class="btn btn-primary">Update</a>
+                            <a th:href="@{/medications/{id}/delete(id=${medication.id})}" class="btn btn-danger">Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+       
+    </main>
+
+    <section class="overlay"></section>
+
+    <script src="script.js"></script>
+    <script>
+        const navBar = document.querySelector("nav"),
+       menuBtns = document.querySelectorAll(".menu-icon"),
+       overlay = document.querySelector(".overlay");
+
+     menuBtns.forEach((menuBtn) => {
+       menuBtn.addEventListener("click", () => {
+         navBar.classList.toggle("open");
+       });
+     });
+
+     overlay.addEventListener("click", () => {
+       navBar.classList.remove("open");
+     });
+    </script>
+  </body>
 </html>
